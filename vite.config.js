@@ -15,7 +15,6 @@ export default defineConfig({
                 'resources/css/skem/pantau-mahasiswa.css',
                 'resources/css/skem/ajukan.css',
                 'resources/css/skem/pantau-admin.css',
-                'resources/css/skem/error.css',
             ],
             refresh: true,
         }),
