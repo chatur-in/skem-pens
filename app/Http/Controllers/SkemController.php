@@ -119,9 +119,9 @@ class SkemController extends Controller
     public function showAttachment(SubmissionAttachment $attachment)
     {
         // Lampiran disimpan di disk private (storage/app/private), tidak bisa diakses via /storage
-        abort_unless(Storage::disk('private')->exists($attachment->file_path), 404);
+        abort_unless(Storage::disk('local')->exists($attachment->file_path), 404);
 
-        return response()->file(Storage::disk('private')->path($attachment->file_path));
+        return response()->file(Storage::disk('local')->path($attachment->file_path));
     }
 
     // Update Status oleh Admin
