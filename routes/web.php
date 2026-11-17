@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\SkemController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,17 @@ Route::get('/generator', function () {
 
 // Route Admin
 Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', [SkemController::class, 'adminDashboard'])->name('admin.dashboard');
-    Route::post('/submission/{id}/status', [SkemController::class, 'updateStatus'])->name('admin.status.update');
-    Route::get('/berkas/{attachment}', [SkemController::class, 'showAttachment'])->name('skem.berkas');
+    // Login (publik, dibatasi 5 percobaan per menit)
+    Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
+    Route::post('/login', [AdminAuthController::class, 'login'])
+        ->middleware('throttle:5,1')
+        ->name('admin.login.submit');
+
+    // Semua route di bawah ini wajib login sebagai admin
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/dashboard', [SkemController::class, 'adminDashboard'])->name('admin.dashboard');
+        Route::post('/submission/{id}/status', [SkemController::class, 'updateStatus'])->name('admin.status.update');
+        Route::get('/berkas/{attachment}', [SkemController::class, 'showAttachment'])->name('skem.berkas');
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+    });
 });

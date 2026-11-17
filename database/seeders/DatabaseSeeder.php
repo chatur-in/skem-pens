@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -18,11 +17,7 @@ class DatabaseSeeder extends Seeder
         // Data prodi, departemen, dan mahasiswa contoh
         $this->call(SkemInitialSeeder::class);
 
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Akun admin (dari ADMIN_EMAIL / ADMIN_PASSWORD di .env)
+        $this->call(AdminSeeder::class);
     }
 }
