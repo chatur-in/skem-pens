@@ -1,0 +1,7 @@
+/* Gaya dasar bersama untuk halaman SKEM (tanpa preflight Tailwind). */
+:root{
+  --navy:#0b2a4d;--blue:#174679;--accent:#3b82f6;--gold:#f3c813;
+  --ink:#0f172a;--mute:#64748b;--line:#e2e8f0;
+  --bad:#dc2626;--badbg:#fef2f2;
+}
+*{box-sizing:border-box}
