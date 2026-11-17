@@ -42,9 +42,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23174679'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Arial' font-weight='800' text-anchor='middle' fill='%23f6c90e'%3ES%3C/text%3E%3C/svg%3E">
 <title>Dashboard Admin – Pengajuan SKEM</title>
-<meta name="theme-color" content="#0b2a4d">
+@include('partials.favicon')
 <style>
 :root{--b:#174679;--b2:#0b2a4d;--b3:#2b6cb0;--y:#f6c90e;--bg:#f2f6fc;--l:#e1e8f2;--ink:#0b1b2e;--mute:#5a6f88;--ok:#12703a;--okbg:#e6f6ec;--bad:#b3261e;--badbg:#fdeceb;--warn:#8a4b00;--warnbg:#fff6e0}
 *{box-sizing:border-box}

@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Masuk Admin – SKEM PENS</title>
-<link rel="icon" type="image/svg+xml" href="{{ asset('images/logo-pens.svg') }}">
-<meta name="theme-color" content="#0b2a4d">
+@include('partials.favicon')
 <style>
 :root{
   --navy:#0b2a4d;--blue:#174679;--accent:#3b82f6;--gold:#f3c813;

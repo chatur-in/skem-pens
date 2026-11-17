@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'SKEM PENS')</title>
+@include('partials.favicon')
     <style>
         :root{--b:#174679;--b2:#0b2a4d;--b3:#2b6cb0;--y:#f6c90e;--bg:#f5f8fd;--l:#dde5f0;--ink:#0b1b2e;--mute:#47607e;--ok:#12703a;--okbg:#e6f6ec;--bad:#b3261e;--badbg:#fdeceb;--warn:#8a4b00;--warnbg:#fff6e0}
         *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Segoe UI",sans-serif}
