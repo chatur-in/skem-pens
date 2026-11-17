@@ -85,17 +85,34 @@ class SkemController extends Controller
     // Dashboard Admin
     public function adminDashboard()
     {
-        $submissions = SkemSubmission::with(['student.studyProgram.department', 'logs', 'attachments'])->latest()->get();
-        
-        $stats = [
-            'total' => $submissions->count(),
-            'proses' => $submissions->whereIn('status', ['diajukan', 'verifikasi', 'validasi'])->count(),
-            'acc' => $submissions->where('status', 'acc')->count(),
-            'tolak' => $submissions->where('status', 'tolak')->count(),
-            'total_poin_acc' => $submissions->where('status', 'acc')->sum('points'),
-        ];
+        // Hanya kolom yang dipakai view. Kolom foreign key tetap disertakan
+        // agar relasi eager loading bisa dipetakan dengan benar.
+        // Statistik tidak lagi dihitung di PHP: halaman sudah menghitungnya
+        // di sisi klien (renderStats), jadi $stats hanya membuang memori.
+        $submissions = SkemSubmission::query()
+            ->select([
+                'id',
+                'registration_number',
+                'student_id',
+                'component',
+                'activity_name',
+                'role',
+                'points',
+                'status',
+                'admin_note',
+                'created_at',
+            ])
+            ->with([
+                'student:id,study_program_id,nrp,name',
+                'student.studyProgram:id,department_id,name',
+                'student.studyProgram.department:id,name',
+                'attachments:id,skem_submission_id,attachment_type,original_name,file_path',
+                'logs:id,skem_submission_id,status_from,status_to,note,created_at',
+            ])
+            ->latest()
+            ->get();
 
-        return view('skem.pantau-admin', compact('submissions', 'stats'));
+        return view('skem.pantau-admin', compact('submissions'));
     }
 
     // Menampilkan dokumen lampiran (formulir / bukti) untuk admin
