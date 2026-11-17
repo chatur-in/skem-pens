@@ -11,6 +11,10 @@ export default defineConfig({
                 // Aset halaman SKEM (tanpa Tailwind/preflight agar tampilan tidak berubah)
                 'resources/css/skem/base.css',
                 'resources/css/skem/admin-login.css',
+                'resources/css/skem/index.css',
+                'resources/css/skem/pantau-mahasiswa.css',
+                'resources/css/skem/ajukan.css',
+                'resources/css/skem/pantau-admin.css',
             ],
             refresh: true,
         }),
