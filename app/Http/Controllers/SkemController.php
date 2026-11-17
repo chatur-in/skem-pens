@@ -118,9 +118,10 @@ class SkemController extends Controller
     // Menampilkan dokumen lampiran (formulir / bukti) untuk admin
     public function showAttachment(SubmissionAttachment $attachment)
     {
-        abort_unless(Storage::disk('public')->exists($attachment->file_path), 404);
+        // Lampiran disimpan di disk private (storage/app/private), tidak bisa diakses via /storage
+        abort_unless(Storage::disk('private')->exists($attachment->file_path), 404);
 
-        return response()->file(Storage::disk('public')->path($attachment->file_path));
+        return response()->file(Storage::disk('private')->path($attachment->file_path));
     }
 
     // Update Status oleh Admin

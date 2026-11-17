@@ -44,7 +44,7 @@ class SkemService
 
             // 4. Simpan Berkas Formulir PDF
             if ($formulirFile) {
-                $path = $formulirFile->store('skem/formulir', 'public');
+                $path = $formulirFile->store('skem/formulir', 'private');
                 SubmissionAttachment::create([
                     'skem_submission_id' => $submission->id,
                     'attachment_type' => 'formulir_pdf',
@@ -56,7 +56,7 @@ class SkemService
 
             // 5. Simpan Bukti Kegiatan (Multiple files)
             foreach ($buktiFiles as $bukti) {
-                $path = $bukti->store('skem/bukti', 'public');
+                $path = $bukti->store('skem/bukti', 'private');
                 SubmissionAttachment::create([
                     'skem_submission_id' => $submission->id,
                     'attachment_type' => 'bukti_kegiatan',
